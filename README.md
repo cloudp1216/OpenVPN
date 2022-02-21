@@ -1,1 +1,1 @@
-# openvpn-easy openvpn
+# OpenVPN

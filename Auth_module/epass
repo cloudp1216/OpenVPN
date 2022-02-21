@@ -1,0 +1,71 @@
+#!/usr/bin/python3
+
+
+import os
+import sys
+
+try:
+    from getpass import getpass
+    from cryptography.fernet import Fernet
+
+except Exception as e:
+    print("Import error: {}".format(e))
+    sys.exit(1)
+
+
+class EPass():
+    def __init__(self, cipher_key):
+        self.cipher_key = cipher_key.encode()
+        self.cipher = Fernet(self.cipher_key)
+
+    def encrypt(self, passwd):
+        self._ciphertext = self.cipher.encrypt(passwd.encode())
+        return bytes.decode(self._ciphertext)
+
+
+def get_cipher_key():
+    kfile = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cipher_key")
+    cipher_key = None
+    if not os.path.exists(kfile):
+        try:
+            with open(kfile, "w") as pf:
+               cipher_key = bytes.decode(Fernet.generate_key())
+               pf.write(cipher_key)
+
+        finally:
+            sys.exit(0)
+
+    else:
+        try:
+            with open(kfile, "r") as pf:
+                cipher_key = pf.read()
+            return cipher_key
+
+        except Exception as e:
+            print("Read cipher key file \'{}\' error.".format(kfile))
+            sys.exit(1)
+
+
+def main():
+    cipher_key = get_cipher_key()
+    passwd = getpass("Password: ")
+    passwd_re = getpass("Retype Password: ")
+    if passwd == passwd_re and passwd != "" and passwd_re != "":
+        try:
+            epass = EPass(cipher_key)
+            print("Ciphertext: {}".format(epass.encrypt(passwd)))
+
+        except Exception as e:
+            print("Error: {}".format(e))
+    else:
+        print("Sorry, the password is empty or mismatched.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+
+    except KeyboardInterrupt:
+        print()
+
+

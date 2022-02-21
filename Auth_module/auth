@@ -1,0 +1,133 @@
+#!/usr/bin/python3
+
+
+ACCESS = 0
+FAILED = 1
+
+
+import os
+import sys
+import logging
+import configparser
+
+try:
+    from cryptography.fernet import Fernet
+
+except Exception as e:
+    print("Import error: {}".format(e))
+    sys.exit(FAILED)
+
+
+GLOB = {
+    "PATH": os.path.dirname(os.path.abspath(__file__)),
+}
+
+
+class EPass():
+    def __init__(self, cipher_key):
+        self.cipher_key = cipher_key.encode()
+        self.cipher = Fernet(self.cipher_key)
+
+    def decrypt(self, ciphertext):
+        self._passwd = self.cipher.decrypt(ciphertext.encode())
+        return bytes.decode(self._passwd)
+
+
+def log(filename=None):
+    if filename != None:
+        try:
+            fmt = "(%(asctime)s) [%(levelname)s]: %(message)s"
+            logging.basicConfig(level=logging.INFO, format=fmt, filename=filename, datefmt="%Y-%m-%d %T")
+            GLOB["LOG"] = logging.getLogger(__name__)
+
+        except Exception as e:
+            print("Read log file error: {}".format(e))
+            sys.exit(FAILED)
+
+    return GLOB["LOG"]
+
+
+def get_cipher_key():
+    kfile = os.path.join(GLOB["PATH"], ".cipher_key")
+    try:
+        with open(kfile, "r") as pf:
+            cipher_key = pf.read()
+            return cipher_key
+
+    except Exception as e:
+        log().error("Read cipher key file \'{}\' error.".format(kfile))
+        sys.exit(FAILED)
+
+
+def get_current_user():
+    username = os.environ.get("username", None)
+    password = os.environ.get("password", None)
+    if username and password:
+        return (username, password)
+    sys.exit(FAILED)
+
+
+def get_remote_ip():
+    ip = os.environ.get("untrusted_ip", None)
+    port = os.environ.get("untrusted_port", None)
+    return ip + ":" + port
+
+
+def create_cfg(ccd, cuser, address, netmask):
+    if os.path.isdir(ccd):
+        client_conf = os.path.join(ccd, cuser)
+        if not os.path.exists(client_conf):
+            with open(client_conf, "w") as pf:
+                log().info("Create client \'{}\' configure file.".format(client_conf))
+                pf.write("ifconfig-push {} {}\n".format(address, netmask))
+
+
+def main():
+    log("/var/log/openvpn/auth.log")
+    pfile = os.path.join(GLOB["PATH"], "passwd")
+
+    parser = configparser.ConfigParser()
+    try:
+        parser.read(pfile)
+
+    except Exception as e:
+        log().error(e)
+        sys.exit(FAILED)
+
+    cuser, cpass = get_current_user()
+    remote_ip = get_remote_ip()
+
+    if not cuser in parser.sections():
+        log().warning("User \'{}\' not exist, from ip \'{}\'.".format(cuser, remote_ip))
+        sys.exit(FAILED)
+
+    parser.set("DEFAULT", "epasswd", "")
+
+    cipher_key = get_cipher_key()
+    epass = EPass(cipher_key)
+    try:
+        passwd = epass.decrypt(parser.get(cuser, "epasswd"))
+        address = parser.get(cuser, "address")
+        netmask = parser.get(cuser, "netmask")
+
+    except Exception:
+        log().error("Get user \'{}\' option value error.".format(cuser))
+        sys.exit(FAILED)
+
+    if passwd == cpass: 
+        log().info("User \'{}\' auth successfully, from ip \'{}\'.".format(cuser, remote_ip))
+        create_cfg("/usr/local/openvpn/etc/ccd", cuser, address, netmask)
+
+        # Successfully
+        sys.exit(ACCESS)
+
+    else:
+        log().warning("User \'{}\' auth failed, from ip \'{}\'.".format(cuser, remote_ip))
+ 
+    sys.exit(FAILED)
+
+
+if __name__ == "__main__":
+    main()
+
+
