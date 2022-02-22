@@ -3,6 +3,11 @@
 OpenVPN installation package, users can run OpenVPN service with only a small adjustment. </p>
 So easy.
 
+## Features
+- Compiled based on [openvpn-2.5.5.tar.gz](https://swupdate.openvpn.org/community/releases/openvpn-2.5.5.tar.gz) source code, never changed any source code
+- [Overview of changes in 2.5.5](https://github.com/OpenVPN/openvpn/blob/release/2.5/Changes.rst)
+- Out of the box
+
 ## System support
 Rocky Linux 8
 
@@ -91,7 +96,6 @@ remote x.x.x.x 443
 ```
 
 6. install the openvpn client and import the configuration file，connection
-
 ![](https://github.com/cloudp1216/OpenVPN/blob/main/Software/login_1.jpg)
 ![](https://github.com/cloudp1216/OpenVPN/blob/main/Software/login_2.jpg)
 
