@@ -72,7 +72,7 @@ Ciphertext: gAAAAABiFP4ZEuEXSui53CCx2wdxAv3DVL42au9dVB0Akl3PcauDNm0y1qjcE_LXJxqE
 [root@rocky ~]# vpnctl vi-passwd
 [user1]
 epasswd = gAAAAABiFP4ZEuEXSui53CCx2wdxAv3DVL42au9dVB0Akl3PcauDNm0y1qjcE_LXJxqE0FoktX9v9I0qIvlhnkgnbGAQJnGHlw==
-adderss = 10.8.0.11
+address = 10.8.0.11
 netmask = 255.255.255.0
 ```
 
