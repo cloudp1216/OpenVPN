@@ -95,7 +95,7 @@ remote x.x.x.x 443
 ...
 ```
 
-6. install the openvpn client and import the configuration file，connection
+6. install the openvpn client and import the configuration file, connection </p>
 ![](https://github.com/cloudp1216/OpenVPN/blob/main/Software/login_1.jpg)
 ![](https://github.com/cloudp1216/OpenVPN/blob/main/Software/login_2.jpg)
 
