@@ -47,7 +47,7 @@ Create client configure file: '/etc/openvpn/cert/cert/client.ovpn'
 ```
 
 ## Usage
-1、adjust route
+1. adjust route
 ```shell
 [root@rocky ~]# vpnctl vi-conf
 ...
@@ -59,7 +59,7 @@ push "route 192.168.222.0 255.255.255.0"
 ...
 ```
 
-2、create user password
+2. create user password
 ```shell
 [root@rocky ~]# vpnctl epass
 Password: 
@@ -67,7 +67,7 @@ Retype Password:
 Ciphertext: gAAAAABiFP4ZEuEXSui53CCx2wdxAv3DVL42au9dVB0Akl3PcauDNm0y1qjcE_LXJxqE0FoktX9v9I0qIvlhnkgnbGAQJnGHlw==
 ```
 
-3、create openvpn user
+3. create openvpn user
 ```shell
 [root@rocky ~]# vpnctl vi-passwd
 [user1]
@@ -76,12 +76,13 @@ address = 10.8.0.11
 netmask = 255.255.255.0
 ```
 
-4、start openvpn server
+4. start openvpn server
 ```shell
 [root@rocky ~]# vpnctl start
+Starting OpenVPN (pid: 10329)   [ OK ]
 ```
 
-5、adjust the client configuration file.
+5. adjust the client configuration file
 ```shell
 [root@rocky ~]# vi /etc/openvpn/cert/cert/client.ovpn
 ...
@@ -89,7 +90,7 @@ remote x.x.x.x 443
 ...
 ```
 
-6、install the OpenVPN client and import the configuration file.
+6. install the OpenVPN client and import the configuration file
 
 ![](https://github.com/cloudp1216/OpenVPN/blob/main/Software/login_1.jpg)
 ![](https://github.com/cloudp1216/OpenVPN/blob/main/Software/login_2.jpg)
