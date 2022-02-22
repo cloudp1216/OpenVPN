@@ -9,8 +9,8 @@ Rocky Linux 8
 ## Install
 Install the RPM package, you need the `python36`、`python3-cryptography` dependency package.
 ```shell
-# dnf install python36 python3-cryptography
-# rpm -ivh OpenVPN-2.5.5-1.el8.x86_64.rpm 
+[root@rocky ~]# dnf install python36 python3-cryptography
+[root@rocky ~]# rpm -ivh OpenVPN-2.5.5-1.el8.x86_64.rpm 
 Verifying...                          ################################# [100%]
 Preparing...                          ################################# [100%]
 Updating / installing...
@@ -45,3 +45,56 @@ This is going to take a long time
 
 Create client configure file: '/etc/openvpn/cert/cert/client.ovpn'
 ```
+
+## Usage
+1、adjust route
+```shell
+[root@rocky ~]# vpnctl vi-conf
+...
+# 6. Route
+# push "redirect-gateway def1 bypass-dhcp"
+# push "dhcp-option DNS x.x.x.x"
+push "route 192.168.111.0 255.255.255.0"
+push "route 192.168.222.0 255.255.255.0"
+...
+```
+
+2、create user password
+```shell
+[root@rocky ~]# vpnctl epass
+Password: 
+Retype Password: 
+Ciphertext: gAAAAABiFP4ZEuEXSui53CCx2wdxAv3DVL42au9dVB0Akl3PcauDNm0y1qjcE_LXJxqE0FoktX9v9I0qIvlhnkgnbGAQJnGHlw==
+```
+
+3、create openvpn user
+```shell
+[root@rocky ~]# vpnctl vi-passwd
+[user1]
+epasswd = gAAAAABiFP4ZEuEXSui53CCx2wdxAv3DVL42au9dVB0Akl3PcauDNm0y1qjcE_LXJxqE0FoktX9v9I0qIvlhnkgnbGAQJnGHlw==
+adderss = 10.8.0.11
+netmask = 255.255.255.0
+```
+
+4、start openvpn server
+```shell
+[root@rocky ~]# vpnctl start
+```
+
+5、adjust the client configuration file.
+```shell
+[root@rocky ~]# vi /etc/openvpn/cert/cert/client.ovpn
+...
+remote x.x.x.x 443
+...
+```
+
+6、install openvpn client and import client configuration file.
+
+
+
+
+
+
+
+
