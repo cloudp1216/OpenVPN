@@ -82,7 +82,7 @@ netmask = 255.255.255.0
 Starting OpenVPN (pid: 10329)   [ OK ]
 ```
 
-5. adjust the client configuration file，
+5. adjust the client configuration file
 ```shell
 [root@rocky ~]# vi /etc/openvpn/cert/cert/client.ovpn
 ...
