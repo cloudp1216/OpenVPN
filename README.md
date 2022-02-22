@@ -46,6 +46,7 @@ Data Base Updated
 Generating DH parameters, 2048 bit long safe prime, generator 2
 This is going to take a long time
 .........................................+...........................
+............+..................................+.....................
 .........................................................++*++*++*++*
 
 Create client configure file: '/etc/openvpn/cert/cert/client.ovpn'
@@ -96,6 +97,7 @@ remote x.x.x.x 443
 ```
 
 6. install the openvpn client and import the configuration file, connection </p>
-![](./Software/login_1.jpg)
-![](./Software/login_2.jpg)
+![](./Software/login-1.jpg)
+![](./Software/login-2.jpg)
+
 
