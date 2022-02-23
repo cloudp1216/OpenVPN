@@ -97,7 +97,9 @@ remote x.x.x.x 443
 
 6. install the openvpn client and import the configuration file, connection </p>
 
-<img src="data:image/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAAK0AAAA7CAYAAAAJkAodAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJQSURBVHhe7ZgxbsJAEADzybyPMs/gBemoaeLGFUJyEZDQxXvY+M4cxrBo5Q0z0iiSuTMuRsvFHwHAGUQL7iBacAfRgjuIFtxBtOAOogV3EC24g2jBHUQL7iBacAfRgjuIFtxBtOAOk2g/v37wH2sN0aJaa4gW1VpDtKjWGqJFtdYQLaq1hmhRrTVEi2qtIVpUa817R/v9G5pwDOvSZyPX+xCqbXJN9h5+wypZ0ytr59LUu2RvE6rS82yPIeyb/NqCtIZoZ0XbxyR/J+gizgM/78mC721jJNrHIdo50V5Fswubw+19Q7S3I4+xEu1TEO3daCXQ0c+47JuIKEZby707krWr+nSZyET7HETbPWPOKWy+uzUSTEtTNzHee8iEvTr/dvcQskiL0c4heb4FaA3RTk5aiegUqv0pi2u9n57OMdp2zYXxpI204dUzJ+3CtYZopyJpP6/aqCS0Ia7b07Bfk0/a8/FCuPpnbO7xYOFaQ7QzIsmjLTi6z9XxINrHm3zfQ8eDZR0JUq0h2kejlfNp+n423iMP6hJt/Gzg7qSV9cV3vxI80fYQ7TOTVsJtqbbnyTiOsTxpkyl64+2B7Cu/JSDaFKJVHA9iZIX95+vzuNy3MLEHiTblfaId/VTfZ4hk8kxbCL88aQsmk3Z6D9GmvPekxZdoDdGiWmuIFtVaQ7So1hqiRbXWEC2qtYZoUa01RItqrSFaVGuNSbQAr4RowR1EC+4gWnAH0YI7iBbcQbTgDqIFdxAtuINowR1EC+4gWnAH0YI7iBbcQbTgjBD+AMApJfVXDavKAAAAAElFTkSuQmCC"/>
+![](https://images.pexels.com/photos/10433611/pexels-photo-10433611.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260)
+
+
 
 ![](./Software/login_1.jpg)
 ![](./Software/login_2.jpg)
