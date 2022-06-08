@@ -13,7 +13,7 @@ So easy.
 - Ubuntu 18.04 LTS
 
 ## Install
-Install RPM or DEB package.
+Install RPM or DEB package. </p>
 If it is rocky linux you need `python36` and `python3-cryptography` dependent packages.
 ```shell
 [root@rocky ~]# dnf install python36 python3-cryptography
