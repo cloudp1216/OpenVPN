@@ -9,7 +9,8 @@ So easy.
 - Out of the box
 
 ## System support
-Rocky Linux 8
+- Rocky Linux 8
+- Ubuntu 18.04 LTS
 
 ## Install
 Install the RPM package, you need the `python36`、`python3-cryptography` dependency package.
