@@ -13,7 +13,7 @@ So easy.
 - Ubuntu 18.04 LTS
 
 ## Install
-Install the RPM package, you need the `python36`、`python3-cryptography` dependency package.
+Based on rocky linux: install the RPM package, you need the `python36`、`python3-cryptography` dependency package.
 ```shell
 [root@rocky ~]# dnf install python36 python3-cryptography
 [root@rocky ~]# rpm -ivh OpenVPN-2.5.5-1.el8.x86_64.rpm 
@@ -49,6 +49,41 @@ This is going to take a long time
 .........................................+...........................
 ............+..................................+.....................
 .........................................................++*++*++*++*
+
+Create client configure file: '/etc/openvpn/cert/cert/client.ovpn'
+```
+
+Based on ubuntu: install the DEB package.
+```shell
+root@ubuntu:~# dpkg -i OpenVPN-2.5.5+bionic_amd64.deb 
+Selecting previously unselected package openvpn.
+(Reading database ... 71553 files and directories currently installed.)
+Preparing to unpack OpenVPN-2.5.5+bionic_amd64.deb ...
+Unpacking openvpn (2.5.5+bionic) ...
+Setting up openvpn (2.5.5+bionic) ...
+Generating a RSA private key
+....+++++
+......................................................+++++
+writing new private key to 'cert/server.key'
+-----
+Using configuration from openssl.cnf
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+countryName           :PRINTABLE:'CN'
+stateOrProvinceName   :ASN.1 12:'China'
+localityName          :ASN.1 12:'China'
+organizationName      :ASN.1 12:'OpenVPN CA'
+commonName            :ASN.1 12:'OpenVPN CA'
+Certificate is to be certified until Jun  5 05:27:12 2032 GMT (3650 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating DH parameters, 2048 bit long safe prime, generator 2
+This is going to take a long time
+..................+...........................................+......
+............+..................................+.....................
+........................+................................++*++*++*++*
 
 Create client configure file: '/etc/openvpn/cert/cert/client.ovpn'
 ```
